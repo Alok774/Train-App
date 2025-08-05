@@ -1,0 +1,48 @@
+<div class="container">
+  <h1 class="heading">🚂 INDIAN RAILWAYS</h1>
+
+  <!-- Form -->
+  <form *ngIf="!submitted" (ngSubmit)="submitForm()" #ticketForm="ngForm" class="form-box">
+    <input type="text" placeholder="Passenger Name" name="name" [(ngModel)]="ticketData.name" required>
+    <input type="text" placeholder="Train No" name="trainNo" [(ngModel)]="ticketData.trainNo" required>
+    <input type="text" placeholder="PNR" name="pnr" [(ngModel)]="ticketData.pnr" required>
+    <input type="text" placeholder="From" name="from" [(ngModel)]="ticketData.from" required>
+    <input type="text" placeholder="To" name="to" [(ngModel)]="ticketData.to" required>
+    <input type="date" name="date" [(ngModel)]="ticketData.date" required>
+    <input type="number" placeholder="Price" name="price" [(ngModel)]="ticketData.price" required>
+    <button type="submit">Generate Ticket</button>
+  </form>
+
+  <!-- Ticket -->
+  <div *ngIf="submitted" class="ticket">
+    <div class="holes left"></div>
+    <div class="holes right"></div>
+
+    <div class="ticket-header">
+      <span>शुभ यात्रा</span>
+      <span class="center">HAPPY JOURNEY</span>
+      <span>टिकट नं. TICKET NO</span>
+    </div>
+
+    <div class="ticket-number">{{ticketData.pnr}}</div>
+
+    <div class="ticket-body">
+      <p class="class">GN JOURNEY</p>
+      <p class="station">{{ticketData.from}} → {{ticketData.to}}</p>
+      <p class="details">
+        Train: {{ticketData.trainNo}}
+      </p>  
+      <p class="details">
+        Date: {{ticketData.date}}
+      </p>
+      <p class="price">Price: ₹{{ticketData.price}}</p>
+      <p class="passenger">Passenger Name: {{ticketData.name}}</p>
+    </div>
+
+    <div class="ticket-footer">
+      Adult: 1 | Child: 0
+    </div>
+
+    <button (click)="bookAnother()">Book Another Ticket</button>
+  </div>
+</div>
